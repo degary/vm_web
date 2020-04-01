@@ -2,19 +2,19 @@
     <div class="container">
         <div class="row">
             <div class="panel panel-primary">
-                <!-- Default panel contents -->
-                <h3 class="panel-heading">主机列表</h3>
+                 <!-- Default panel contents -->
+                <h3 class="panel-heading">硬盘列表</h3>
 
                 <!-- 循环生成列表 -->
                 <table class="table table-striped table-hover">
                     <!-- 生成表头 -->
                     <thead>
-                        <HostHeader :headers='getHeaders'></HostHeader>
+                        <DiskHeader :headers='getHeaders'></DiskHeader>
                     </thead>
                     
                     <!-- 生成表数据 -->
                     <tbody>
-                        <HostForm v-for='(item,index) in getForms' :forms='item' :key='index'></HostForm>
+                        <DiskForm v-for='(item,index) in getForms' :forms='item' :key='index'></DiskForm>
                     </tbody>
                     
                 </table>
@@ -25,11 +25,11 @@
 </template>
 
 <script>
-import HostHeader from './HostHeader.vue'
-import HostForm from './HostForm.vue'
+import DiskHeader from './DiskHeader.vue'
+import DiskForm from './DiskForm.vue'
 
 export default {
-    name:'Host',
+    name:'Disk',
     data(){
         return {
 
@@ -37,16 +37,16 @@ export default {
     },
     computed:{
         getHeaders(){
-            return this.$store.state.hostHeader.data;
+            return this.$store.state.diskSpaceHeader.data;
         },
         getForms(){
-            // console.log('physicaldisk',this.$store.state.hostList.data.results[0].physicaldisk)
-            return this.$store.state.hostList.data.results;
+            // console.log('physicaldisk',this.$store.state.diskList.data.results[0].physicaldisk)
+            return this.$store.state.diskSpaceList.data.results;
         }
     },
     components:{
-        HostHeader,
-        HostForm
+        DiskHeader,
+        DiskForm
     }
 }
 </script>

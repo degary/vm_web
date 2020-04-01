@@ -24,6 +24,16 @@ import axios from 'axios'
 // 使用vuex存储数据并异步发送axios
 const store=new Vuex.Store({
   state:{
+    diskSpaceHeader:{
+      data:{
+        
+      }
+    },
+    diskSpaceList:{
+      data:{
+
+      }
+    },
     hostHeader:{
       data:{
         
@@ -93,9 +103,46 @@ const store=new Vuex.Store({
     },
     GETUNSTALLVMHOSTS(state,value){
       state.uninstallvmhosts=value;
+    },
+    GETDISKSPACELIST(state,value){
+      state.diskSpaceList=value;
+    },
+    GETDISKSPACEHEADER(state,value){
+      state.diskSpaceHeader=value;
     }
   },
   actions:{
+    // 通过axios获取数据 在Host异步dispatch
+    getDiskSpaceHeader(context){
+      axios.get(BaseUrl.baseURL+'/api/v1/disk/headers/')
+      .then(function(response){
+        // console.log('获取表头信息',response);
+        context.commit('GGETDISKSPACEHEADER',response)
+      })
+      .catch(function(error){
+        console.log(error);
+      })
+    },
+    getDiskSpaceList(context,host_ip){
+      axios.get(BaseUrl.baseURL+'/api/v1/disk/',{
+        params:{
+          host_ip:`${host_ip}`
+        }
+      })
+      .then(function(response){
+        // console.log('获取主机列表',host_ip);
+        if(host_ip == ''){
+          context.commit('GETDISKSPACELIST',response)
+        }
+        else{
+          context.commit('GETDISKSPACELIST',response)
+        }
+        
+      })
+      .catch(function(error){
+        console.log(error);
+      })
+    },
     // 通过axios获取数据 在Host异步dispatch
     getHostHeader(context){
       axios.get(BaseUrl.baseURL+'/api/v1/host/headers/')
@@ -130,6 +177,16 @@ const store=new Vuex.Store({
     // 获取机房相关
     getRoomList(context){
       axios.get(BaseUrl.baseURL+'/api/v1/room/')
+      .then(function(response){
+        // console.log('机房信息',response);
+        context.commit('GETROOMLIST',response)
+      })
+      .catch(function(error){
+        console.log(error);
+      })
+    },
+    getNetList(context){
+      axios.get(BaseUrl.baseURL+'/api/v1/net/')
       .then(function(response){
         // console.log('机房信息',response);
         context.commit('GETROOMLIST',response)

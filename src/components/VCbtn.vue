@@ -23,6 +23,11 @@
                 <el-form-item label="虚拟机网关" prop="vm_gateway">
                     <el-input v-model="form.vm_gateway" autocomplete="off"></el-input>
                 </el-form-item>
+                <el-form-item label="网络适配器名称" prop="net_name">
+                    <el-select v-model="form.net_name" placeholder="请选择网络适配器">
+                        <el-option v-for='(item,index) in getNetList' :key="index" :label="item.name" :value="item.name"></el-option>
+                    </el-select>
+                </el-form-item>
                 <el-form-item label="宿主机IP" prop="host_ip">
                     <el-input v-model="form.host_ip" autocomplete="off" @blur="dispatchDisk(form.host_ip)"></el-input>
                 </el-form-item>
@@ -58,6 +63,7 @@ export default {
     name:'VCREATE',
     data(){
         return {
+            getNetList:[],
             dialogFormVisible:false,
             formLabelWidth: '120px',
             form: {
@@ -70,7 +76,8 @@ export default {
                 "vm_gateway": '',
                 "vm_proposer": '',
                 "host_ip": '',
-                "datastore": ''
+                "datastore": '',
+                'net_name': ''
             },
             rules:{
                 vm_name:[
@@ -110,9 +117,20 @@ export default {
         
     },
     created(){
-        
+        this.getNetLists();
     },
     methods:{
+        getNetLists(context){
+              const _this=this
+        axios.get(_this.BaseUrl.baseURL+'/api/v1/net/')
+            .then(function(response){
+                _this.getNetList=response.data.results
+         //console.log('网络适配器信息',response);
+        })
+      .catch(function(error){
+        console.log(error);
+      })
+    },
         Vcreate(){
             const _this=this
             axios.post(_this.BaseUrl.baseURL+'/api/v1/vmhost/',{
@@ -125,7 +143,8 @@ export default {
                 "vm_gateway": this.form.vm_gateway,
                 "vm_proposer": this.form.vm_proposer,
                 "host_ip": this.form.host_ip,
-                "datastore": this.form.datastore
+                "datastore": this.form.datastore,
+                "net_name": this.form.id,
             })
             .then(function(response){
                 // console.log(response);
@@ -143,6 +162,7 @@ export default {
     computed:{
         getDiskList(){
             try{
+                console.log(this.$store.state.diskList.data)
                 return this.$store.state.diskList.data.results[0].physicaldisk;
             }
             catch(error){
