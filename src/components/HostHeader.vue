@@ -7,7 +7,7 @@
         <th>{{headers.memory}}</th>
         <th>{{headers.host_ip}}</th>
         <th>{{headers.idrac_ip}}</th>
-        <th>{{headers.host_active}}</th>
+        <th>{{headers.host_mem_free}}</th>
     </tr>
 </template>
 <script>

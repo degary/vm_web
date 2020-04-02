@@ -7,7 +7,7 @@
         <td>{{forms.memory}}</td>
         <td>{{forms.host_ip}}</td>
         <td>{{forms.idrac_ip}}</td>
-        <td>{{forms.host_active}}</td>
+        <td>{{forms.host_mem_free}}</td>
     </tr>
 </template>
 <script>
