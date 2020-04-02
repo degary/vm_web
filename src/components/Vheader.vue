@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header" @click="activeHander(0)">
-            <router-link class="navbar-brand" to="/">首页</router-link>
+            <router-link class="navbar-brand" to="/">新建虚拟机平台</router-link>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -38,7 +38,8 @@ export default {
             routes:[
                 {url:'/',title:'主机'},
                 {url:'/room',title:'机房'},
-                {url:'/vmhost',title:'虚拟机'}
+                {url:'/vmhost',title:'虚拟机'},
+                 {url:'/disk',title:'存储列表'},
             ],
             currentIndex:0
         }

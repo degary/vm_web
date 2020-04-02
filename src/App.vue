@@ -27,7 +27,8 @@ export default {
     // 获取虚拟机相关
     this.$store.dispatch('getVHostHeader');
     this.$store.dispatch('getInstallVmHosts');
-    this.$store.dispatch('getUnstallVmHosts');
+    this.$store.dispatch('getDiskSpaceHeader');
+    this.$store.dispatch('getDiskSpaceList');
   }
 }
 </script>

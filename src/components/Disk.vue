@@ -14,7 +14,7 @@
                     
                     <!-- 生成表数据 -->
                     <tbody>
-                        <DiskForm v-for='(item,index) in getForms' :forms='item' :key='index'></DiskForm>
+                        <DiskForm v-for='(item,index) in getDiskForms' :forms='item' :key='index'></DiskForm>
                     </tbody>
                     
                 </table>
@@ -39,8 +39,8 @@ export default {
         getHeaders(){
             return this.$store.state.diskSpaceHeader.data;
         },
-        getForms(){
-            // console.log('physicaldisk',this.$store.state.diskList.data.results[0].physicaldisk)
+        getDiskForms(){
+            //console.log('diskSpaceList',this.$store.state.diskSpaceList.data.results)
             return this.$store.state.diskSpaceList.data.results;
         }
     },

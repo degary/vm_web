@@ -31,7 +31,11 @@ const store=new Vuex.Store({
     },
     diskSpaceList:{
       data:{
+        results:[{
+          physicaldisk:[{
 
+          }]
+        }]
       }
     },
     hostHeader:{
@@ -117,28 +121,19 @@ const store=new Vuex.Store({
       axios.get(BaseUrl.baseURL+'/api/v1/disk/headers/')
       .then(function(response){
         // console.log('获取表头信息',response);
-        context.commit('GGETDISKSPACEHEADER',response)
+        context.commit('GETDISKSPACEHEADER',response)
       })
       .catch(function(error){
         console.log(error);
       })
     },
-    getDiskSpaceList(context,host_ip){
-      axios.get(BaseUrl.baseURL+'/api/v1/disk/',{
-        params:{
-          host_ip:`${host_ip}`
-        }
-      })
+    getDiskSpaceList(context){
+      axios.get(BaseUrl.baseURL+'/api/v1/disk/')
       .then(function(response){
-        // console.log('获取主机列表',host_ip);
-        if(host_ip == ''){
+          //console.log('获取存储列表');
+           
           context.commit('GETDISKSPACELIST',response)
-        }
-        else{
-          context.commit('GETDISKSPACELIST',response)
-        }
-        
-      })
+        })      
       .catch(function(error){
         console.log(error);
       })
@@ -147,7 +142,7 @@ const store=new Vuex.Store({
     getHostHeader(context){
       axios.get(BaseUrl.baseURL+'/api/v1/host/headers/')
       .then(function(response){
-        // console.log('获取表头信息',response);
+         //console.log('获取表头信息',response);
         context.commit('GETHOSTHEADER',response)
       })
       .catch(function(error){
@@ -161,7 +156,7 @@ const store=new Vuex.Store({
         }
       })
       .then(function(response){
-        // console.log('获取主机列表',host_ip);
+        //console.log('获取主机列表',host_ip);
         if(host_ip == ''){
           context.commit('GETHOSTLIST',response)
         }

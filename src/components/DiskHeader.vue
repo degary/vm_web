@@ -2,7 +2,6 @@
     <tr>
         <th>{{headers.id}}</th>
         <th>{{headers.disk_name}}</th>
-        <th>{{headers.disk_space}}</th>
         <th>{{headers.disk_free_space}}</th>
         <th>{{headers.disk_mount}}</th>
     </tr>
