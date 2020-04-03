@@ -67,12 +67,14 @@ export default {
     },
     computed:{
         getVHeaders(){
+            //console.log('getVHeader', this.$store.state.vmhostHeader.data)
             return this.$store.state.vmhostHeader.data;
         },
         getInForms(){
             return this.$store.state.installvmhosts.data.results;
         },
         getUnForms(){
+            //console.log('uninstall', this.$store.state.uninstallvmhosts.data.results)
             return this.$store.state.uninstallvmhosts.data.results;
         },
     },

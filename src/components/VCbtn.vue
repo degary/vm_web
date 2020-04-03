@@ -25,7 +25,7 @@
                 </el-form-item>
                 <el-form-item label="网络适配器名称" prop="net_name">
                     <el-select v-model="form.net_name" placeholder="请选择网络适配器">
-                        <el-option v-for='(item,index) in getNetList' :key="index" :label="item.name" :value="item.name"></el-option>
+                        <el-option v-for='(item,index) in getNetList' :key="index" :label="item.name" :value="item"></el-option>
                     </el-select>
                 </el-form-item>
                 <el-form-item label="宿主机IP" prop="host_ip">

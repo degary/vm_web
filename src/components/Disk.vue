@@ -14,7 +14,7 @@
                     
                     <!-- 生成表数据 -->
                     <tbody>
-                        <DiskForm v-for='(item,index) in getDiskForms' :forms='item' :key='index'></DiskForm>
+                        <DiskForm v-for='(item,index) in getDiskForms.results' :forms='item' :key='index'></DiskForm>
                     </tbody>
                     
                 </table>
@@ -40,8 +40,9 @@ export default {
             return this.$store.state.diskSpaceHeader.data;
         },
         getDiskForms(){
-            //console.log('diskSpaceList',this.$store.state.diskSpaceList.data.results)
-            return this.$store.state.diskSpaceList.data.results;
+            console.log('diskSpaceList',this.$store.state.diskSpaceList.data)
+            //return this.$store.state.diskSpaceList.data.results;
+            return this.$store.state.diskSpaceList.data;
         }
     },
     components:{
